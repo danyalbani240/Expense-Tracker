@@ -7,7 +7,12 @@ const ExpenseTracker = () => {
 	const [income, setIncome] = useState(0);
 	const [transactions, setTransactions] = useState([]);
 	const addTransaction = (data) => {
-		setTransactions([...transaction, { ...data, id: Date.now() }]);
+		setTransactions([...transactions, { ...data, id: Date.now() }]);
+		if (data.type === "income") {
+			setIncome((oldValue) => oldValue + +data.amount);
+		} else {
+			setExpense((oldValue) => oldValue + +data.amount);
+		}
 	};
 	return (
 		<div className="container">
@@ -16,7 +21,7 @@ const ExpenseTracker = () => {
 				income={income}
 				expense={expense}
 			/>
-			<Transactions transaction={transaction} />
+			<Transactions transactions={transactions} />
 		</div>
 	);
 };
