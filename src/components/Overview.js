@@ -7,14 +7,21 @@ const Overview = ({ income, expense, addTransaction }) => {
 		<>
 			<div className="expense-app">
 				<p>Balance : {income - expense}</p>
-				<button onClick={() => setIsShow(!isShow)}>
+				<button
+					className={`btn ${isShow ? "cancel" : ""}`}
+					onClick={() => setIsShow(!isShow)}
+				>
 					{isShow ? "Cancel" : "Add"}
 				</button>
 			</div>
 			{isShow && <TransactionForm addTransaction={addTransaction} />}
 			<div className="result-section">
-				<div>Expense : {expense}</div>
-				<div>Income : {income}</div>
+				<div className="expense-box">
+					Expense <span style={{ color: "red" }}>{expense}</span>
+				</div>
+				<div className="expense-box">
+					Income <span>{income}</span>{" "}
+				</div>
 			</div>
 		</>
 	);

@@ -19,9 +19,15 @@ const TransactionForm = ({ addTransaction }) => {
 				type={"text"}
 				name={"description"}
 				onChange={changeHandler}
+				placeholder="description"
 			/>
-			<input type={"number"} name={"amount"} onChange={changeHandler} />
-			<div>
+			<input
+				type={"number"}
+				name={"amount"}
+				placeholder="amount"
+				onChange={changeHandler}
+			/>
+			<div className="radio-box">
 				<input
 					type="radio"
 					value={"expense"}
@@ -41,7 +47,7 @@ const TransactionForm = ({ addTransaction }) => {
 				/>
 				<label htmlFor="incomeCheck">Income</label>
 			</div>
-			<button>Add Transaction</button>
+			<button className="primary btn">Add Transaction</button>
 		</form>
 	);
 };
