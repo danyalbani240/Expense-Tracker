@@ -105,3 +105,12 @@ margin-left: 10px;
   display: flex;
   justify-content: space-between;
 }
+.search {
+  display: block;
+  border-radius:5px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #efefef;
+    width: 100%;
+    margin: 20px 0;
+}
