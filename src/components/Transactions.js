@@ -1,7 +1,37 @@
+import { useEffect, useState } from "react";
+
 const Transactions = ({ transactions }) => {
+	const [searchedTransation, setSearchedTransation] = useState("");
+	const [filteredTransactions, setFilteredTransactions] =
+		useState(transactions);
+	const changeHandler = (e) => {
+		setSearchedTransation(e.target.value);
+		filterTransactions(e.target.value);
+	};
+	const filterTransactions = (searched) => {
+		if (searched === "" || searched === " ") {
+			setFilteredTransactions(transactions);
+			return;
+		}
+		const filtered = [...transactions].filter((item) =>
+			item.description.toLowerCase().includes(searched.toLowerCase())
+		);
+		setFilteredTransactions(filtered);
+	};
+	// updating filteredTransactions when some new transactions added
+	useEffect(() => {
+		filterTransactions(searchedTransation);
+	}, [transactions]);
 	return (
 		<div>
-			{transactions.map((transaction) => {
+			<input
+				type={"search"}
+				onChange={changeHandler}
+				value={searchedTransation}
+				placeholder={"search for transaction"}
+				className="search"
+			/>
+			{filteredTransactions.map((transaction) => {
 				return (
 					<div
 						key={transaction.id}
